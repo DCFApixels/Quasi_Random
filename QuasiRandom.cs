@@ -1,8 +1,7 @@
-﻿using DCFApixels.Internal;
-using System;
+﻿using System;
 using UnityEngine;
 
-namespace DCFApixels.Internal
+namespace DCFApixels
 {
     public abstract class QuasiRandomBase
     {
@@ -29,11 +28,11 @@ namespace DCFApixels.Internal
         }
         protected QuasiRandomBase(int seed)
         {
-            _seed = Math.Abs(seed / int.MaxValue);
+            _seed = Mathf.Abs(seed / int.MaxValue);
         }
         protected QuasiRandomBase(float seed)
         {
-            _seed = Math.Abs(seed / float.MaxValue);
+            _seed = Mathf.Abs(seed / float.MaxValue);
         }
         protected QuasiRandomBase(State state)
         {
@@ -41,9 +40,7 @@ namespace DCFApixels.Internal
             _iteration = state._iteration;
         }
     }
-}
-namespace DCFApixels
-{
+
     public class Quasi1DRandom : QuasiRandomBase
     {
         public static readonly Quasi1DRandom global = new Quasi1DRandom();
