@@ -3,7 +3,7 @@ Quasi-Random Number Generator for Unity
 <br><br>
 Квазислучайные последовательности хорошо подходят когда стоит задача равномерно заполнить пространсво несколькими объектами. Скрипт использует векторы движка Unity.
 <br>
-![image](https://user-images.githubusercontent.com/99481254/183262665-db17d551-c1bb-4141-b576-efd277cb6b93.png)
+![image](https://user-images.githubusercontent.com/99481254/183282958-04fbb0d9-c8c5-495c-be0b-3629676a03c2.png)
 <br><br>
 QuasiRandom.cs содержит в себе 3 класса для 3-х измерений:<br>
 Quasi1DRandom - просто генерирует квазислучайное float значение X, которое 0.0 <= X < 1.0;<br>
