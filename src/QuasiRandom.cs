@@ -14,12 +14,12 @@ namespace DCFApixels
         #region Consts
         private const uint UINT_HIBIT = 0x8000_0000;
 
-        private const q64 Q64_MAX = q64.MaxValue;
         private const q32 Q32_MAX = q32.MaxValue;
+        private const q64 Q64_MAX = q64.MaxValue;
 
         private const decimal G1 = 1.6180339887498948482045868383m;
-        private const q64 X1_Q64 = ((q64)(1m / G1) * Q64_MAX) + 1;
-        private const q32 X1_Q32 = ((q32)(1m / G1) * Q32_MAX) + 1;
+        private const q32 X1_Q32 = (q32)(1m / G1 * Q32_MAX) + 1;
+        private const q64 X1_Q64 = (q64)(1m / G1 * Q32_MAX) + 1;
 
         private const decimal G2 = 1.3247179572447460259609088563m;
         private const q32 X2_Q32 = (q32)(1m / G2 * Q32_MAX) + 1;
