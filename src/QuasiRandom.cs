@@ -7,6 +7,7 @@ using q64 = System.UInt64;
 namespace DCFApixels
 {
     /// <summary>Quasi Random. Use new additive recursive R-sequence.</summary>
+    [Serializable]
     public partial struct QuasiRandom :
         IEquatable<QuasiRandom>,
         IFormattable
