@@ -105,16 +105,16 @@ QuasiRandom реализованн в виде структуры размеро
 + `double` [0.0d <= x < 1.0d] <br>
 `NextDouble2()` `NextDouble3()` `NextDouble4()`;
 
+</details>
+
 ### Состояние
 
-+ `GetState()` Получение состояния 
-+ `SetState()` Изменение состояния 
++ `GetState()` - Получение состояния 
++ `SetState()` - Изменение состояния 
 
 ### Прочее
 
 Переопределены методы `Equals`, `GethashCode`, `ToString` и операторы сравнения
-
-</details>
 
 ## Пример/Сравнение
 ![ex](https://github.com/DCFApixels/Quasi_Random/assets/99481254/a1556d7d-7e6b-41cc-98dd-7af6aeffb590)
