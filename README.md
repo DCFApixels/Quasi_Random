@@ -117,4 +117,5 @@ QuasiRandom реализованн в виде структуры размеро
 Переопределены методы `Equals`, `GethashCode`, `ToString` и операторы сравнения
 
 ## Пример/Сравнение
+Сравнивается `System.Random` и `QuasiRandom` на примере генерации точек в двумерном пространстве.
 ![ex](https://github.com/DCFApixels/Quasi_Random/assets/99481254/a1556d7d-7e6b-41cc-98dd-7af6aeffb590)
