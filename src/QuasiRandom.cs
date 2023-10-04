@@ -179,6 +179,9 @@ namespace DCFApixels
         /*----------------------------------------------------------------------------------------------------------------*/
         #endregion
 
+#if UNITY_5_3_OR_NEWER
+        [UnityEngine.SerializeField]
+#endif
         private uint _state;
 
         #region Constructors
