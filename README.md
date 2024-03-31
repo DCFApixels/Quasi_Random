@@ -1,5 +1,8 @@
 # Quasi Random Generator
 
+| Languages: | [Русский](https://github.com/DCFApixels/Quasi_Random) | [中文](https://github.com/DCFApixels/Quasi_Random/blob/main/README-ZH.md) |
+| :--- | :--- | :--- |
+
 * [Введение](#Введение)
 * [Установка](#Установка)
 * [Описание](#Описание)
