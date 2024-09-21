@@ -9,13 +9,13 @@
   <tr>
     <td nowrap width="100">
       <a href="https://github.com/DCFApixels/Quasi_Random/blob/main/README-RU.md">
-        <img src="https://github.com/user-attachments/assets/7bc29394-46d6-44a3-bace-0a3bae65d755"></br>
+        <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"></br>
         <span>Русский</span>
       </a>  
     </td>
     <td nowrap width="100">
       <a href="https://github.com/DCFApixels/DragonECS">
-        <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"></br>
+        <img src="https://github.com/user-attachments/assets/30528cb5-f38e-49f0-b23e-d001844ae930"></br>
         <span>English</span>
       </a>  
     </td>
@@ -28,42 +28,38 @@
   </tr>
 </table>
 
-* [Introduction](#Introduction)
-* [Installation](#Installation)
-* [Description](#Description)
-  * [Constructors](#Constructors)
-  * [Generation](#Generation)
-  * [State](#State)
-  * [Other](#Other)
-* [Example/Comparison](#ExampleComparison)
+* [Введение](#Введение)
+* [Установка](#Установка)
+* [Описание](#Описание)
+  * [Конструкторы](#Конструкторы)
+  * [Генерация](#Генерация)
+  * [Состояние](#Состояние)
+  * [Прочее](#Прочее)
+* [Пример/Сравнение](#примерсравнение)
 
-</br>
 
-## Introduction
-Quasi-random sequences are well suited when the problem is to uniformly fill a space by simulating random filling. The implementation is based on a new additive recursive R-sequence and an article from [Habr](https://habr.com/ru/articles/440892/).
-R-sequence is easy to compute, and when computed in integers it gives good performance. 
+## Введение
+Квазислучайные последовательности хорошо подходят когда стоит задача равномерно заполнить пространсво иммитируя случайное заполнение. Реализация основана на новой аддитивной рекурсивной R-последовательности и статье [Хабра](https://habr.com/ru/articles/440892/).
+R последовательность легко высчитывается, а при подсчете в целых числах дает хорошую производительность. 
 
-I used this sequence to generate starting positions, stores and other activity points in the  [БольКрафт](https://www.youtube.com/watch?v=txSoCd98OcI&list=PLZT7fvvYlYfhqWJBWzJoLQxconfz1lHPq&index=17) map generator for Warcraft 3. This way the activity points were placed roughly evenly across the map while making their positions look random.
+Данную последовательность я использовал для генерации стартовых позиций, магазинов и прочих точек активности в генераторе карты [БольКрафт](https://www.youtube.com/watch?v=txSoCd98OcI&list=PLZT7fvvYlYfhqWJBWzJoLQxconfz1lHPq&index=17) для Warcraft 3. Так точки активности располагались примерно равномерно по всей карте и при этом их позиции выглядели случайным.
 
-</br>
+## Установка
+Для установки просто скопируйте содержимое папки `src` в проект. Папка `src` содержит:
++ `src\QuasiRandom.cs` - базовый, без зависимостей от среды;
++ `src\QuasiRandom.unity.cs` - расширение базового для поддержки векторов из Unity;  
++ `src\QuasiRandom.unity.mathematics.cs` - расширение базового для поддержки векторных типов Unity.Mathematics;
 
-## Installation
-To install, simply copy the contents of the `src` folder into the project. The `src` folder contains:
-+ `src\QuasiRandom.cs` - basic, no environment dependencies;
-+ `src\QuasiRandom.unity.cs` - extension of the basic one to support vectors from Unity;  
-+ `src\QuasiRandom.unity.mathematics.cs` - extension of basic to support vector types from Unity.Mathematics;
+## Описание
 
-</br>
+QuasiRandom реализованн в виде структуры размером 4 байта, может генерировать последовательности с равномерным заполнением для 1D, 2D, 3D и 4D пространства.
 
-## Description
-QuasiRandom is implemented as a 4 byte structure, can generate sequences with uniform filling for 1D, 2D, 3D and 4D space.
+### Конструкторы
++ `new QuasiRandom()` - экземпляр с сидом = 0;
++ `new QuasiRandom(seed)` - экземпляр с сидом = seed;
++ `QuasiRandom.AutoSeed()` - экземпляр с автоматическим сидом;
 
-### Constructors
-+ `new QuasiRandom()` - instance with seed = 0;
-+ `new QuasiRandom(seed)` - instance with seed = seed;
-+ `QuasiRandom.AutoSeed()` - instance with auto seed;
-
-### Generation
+### Генерация
 
 <details>
 <summary><b>QuasiRandom.cs</b></summary>
@@ -149,17 +145,15 @@ QuasiRandom is implemented as a 4 byte structure, can generate sequences with un
 
 </details>
 
-### State
+### Состояние
 
-+ `GetState()` - Receive state;
-+ `SetState(state)` - Change state; 
++ `GetState()` - Получение состояния;
++ `SetState(state)` - Изменение состояния;
 
-### Other
+### Прочее
 
-The methods `Equals`, `GethashCode`, `ToString`, and comparison operators have been overridden.
+Переопределены методы `Equals`, `GethashCode`, `ToString` и операторы сравнения
 
-</br>
-
-## Example/Comparison
-Compares `System.Random` and `QuasiRandom` using the example of generating points in two-dimensional space:
+## Пример/Сравнение
+Сравнивается `System.Random` и `QuasiRandom` на примере генерации точек в двумерном пространстве:
 ![ex](https://github.com/DCFApixels/Quasi_Random/assets/99481254/a1556d7d-7e6b-41cc-98dd-7af6aeffb590)

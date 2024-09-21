@@ -8,9 +8,15 @@
   <tr></tr>
   <tr>
     <td nowrap width="100">
-      <a href="https://github.com/DCFApixels/Quasi_Random">
+      <a href="https://github.com/DCFApixels/Quasi_Random/blob/main/README-RU.md">
         <img src="https://github.com/user-attachments/assets/7bc29394-46d6-44a3-bace-0a3bae65d755"></br>
         <span>Русский</span>
+      </a>  
+    </td>
+    <td nowrap width="100">
+      <a href="https://github.com/DCFApixels/DragonECS">
+        <img src="https://github.com/user-attachments/assets/30528cb5-f38e-49f0-b23e-d001844ae930"></br>
+        <span>English</span>
       </a>  
     </td>
     <td nowrap width="100">
@@ -141,13 +147,13 @@ QuasiRandom 实现为一个大小为 4 字节的 struct，可以为 1D、2D、3D
 
 ### 状态
 
-+ `GetState()` - 获取状态
-+ `SetState(state)` - 设置状态 
++ `GetState()` - 获取状态；
++ `SetState(state)` - 设置状态；
 
 ### 其他
 
 重写了 `Equals`、`GetHashCode`、`ToString` 方法和比较运算符。
 
 ## 示例/比较
-下图比较了在二维空间中使用 `System.Random` 和 `QuasiRandom` 生成点的情况。
+下图比较了在二维空间中使用 `System.Random` 和 `QuasiRandom` 生成点的情况：
 ![ex](https://github.com/DCFApixels/Quasi_Random/assets/99481254/a1556d7d-7e6b-41cc-98dd-7af6aeffb590)
