@@ -1,7 +1,26 @@
 # Quasi Random Generator
 
-| Languages: | [Русский](https://github.com/DCFApixels/Quasi_Random) | [中文](https://github.com/DCFApixels/Quasi_Random/blob/main/README-ZH.md) |
-| :--- | :--- | :--- |
+<table>
+  <tr></tr>
+  <tr>
+    <td colspan="3">Readme Languages:</td>
+  </tr>
+  <tr></tr>
+  <tr>
+    <td nowrap width="100">
+      <a href="https://github.com/DCFApixels/Quasi_Random">
+        <img src="https://github.com/user-attachments/assets/7bc29394-46d6-44a3-bace-0a3bae65d755"></br>
+        <span>Русский</span>
+      </a>  
+    </td>
+    <td nowrap width="100">
+      <a href="https://github.com/DCFApixels/Quasi_Random/blob/main/README-ZH.md">
+        <img src="https://github.com/user-attachments/assets/3c699094-f8e6-471d-a7c1-6d2e9530e721"></br>
+        <span>中文</span>
+      </a>  
+    </td>
+  </tr>
+</table>
 
 * [介绍](#介绍)
 * [安装](#安装)
