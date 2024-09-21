@@ -28,6 +28,9 @@
   </tr>
 </table>
 
+</br>
+
+## 目录
 * [介绍](#介绍)
 * [安装](#安装)
 * [描述](#描述)
@@ -37,11 +40,14 @@
   * [其他](#其他)
 * [示例/比较](#示例比较)
 
+</br>
 
 ## 介绍
 Quasi随机序列在需要模拟随机填充并均匀填充空间的情况下非常适用。该实现基于新的加法递归R序列和[habr文章](https://habr.com/ru/articles/440892/)。R序列易于计算，并且在整数计算时具有良好的性能。
 
 我使用该序列来生成[Warcraft 3地图](https://www.youtube.com/watch?v=txSoCd98OcI&list=PLZT7fvvYlYfhqWJBWzJoLQxconfz1lHPq&index=17)的起始位置、商店和其他活动点的生成器。因此，活动点大致均匀分布在整个地图上，同时它们的位置看起来是随机的。
+
+</br>
 
 ## 安装
 威安装只需将src文件夹中的内容复制到项目中。 src 文件夹包含以下内容：
@@ -49,6 +55,8 @@ Quasi随机序列在需要模拟随机填充并均匀填充空间的情况下非
 src\QuasiRandom.cs - 基本版本，不依赖于任何环境；
 src\QuasiRandom.unity.cs - 为支持Unity中的向量的扩展；
 src\QuasiRandom.unity.mathematics.cs - 为支持Unity.Mathematics中的向量的扩展；
+
+</br>
 
 ## 描述
 
@@ -153,6 +161,8 @@ QuasiRandom 实现为一个大小为 4 字节的 struct，可以为 1D、2D、3D
 ### 其他
 
 重写了 `Equals`、`GetHashCode`、`ToString` 方法和比较运算符。
+
+</br>
 
 ## 示例/比较
 下图比较了在二维空间中使用 `System.Random` 和 `QuasiRandom` 生成点的情况：

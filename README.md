@@ -28,6 +28,10 @@
   </tr>
 </table>
 
+</br>
+
+## Table of Contents
+
 * [Introduction](#Introduction)
 * [Installation](#Installation)
 * [Description](#Description)
