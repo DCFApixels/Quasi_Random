@@ -1,3 +1,12 @@
+<p align="center">
+<img width="300" src="https://github.com/user-attachments/assets/451365c6-8957-48f9-8199-ce9b81cb87ca">
+</p>
+
+<p align="center">
+<img alt="Version" src="https://img.shields.io/github/package-json/v/DCFApixels/Quasi_Random?style=for-the-badge&color=1e90ff">
+<img alt="License" src="https://img.shields.io/github/license/DCFApixels/Quasi_Random?color=1e90ff&style=for-the-badge">
+</p>
+
 # Quasi Random Generator
 
 <table>

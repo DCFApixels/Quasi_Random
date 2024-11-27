@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-<img alt="Version" src="https://img.shields.io/github/meta-json/v/DCFApixels/Quasi_Random?style=for-the-badge&color=1e90ff">
+<img alt="Version" src="https://img.shields.io/github/package-json/v/DCFApixels/Quasi_Random?style=for-the-badge&color=1e90ff">
 <img alt="License" src="https://img.shields.io/github/license/DCFApixels/Quasi_Random?color=1e90ff&style=for-the-badge">
 </p>
 
