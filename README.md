@@ -79,86 +79,232 @@ QuasiRandom is implemented as a 4 byte structure, can generate sequences with un
 ### Generation
 
 <details>
-<summary><b>QuasiRandom.cs</b></summary>
+<summary><b>NextBool</b></summary>
 
-+ `bool`<br>[false - true] <br>
-`NextBool()` `NextBool2(out x, out y)` `NextBool3(out x, out y, out z)` `NextBool4(out x, out y, out z, out w)`;
-
-+ `int`<br>[int.MinValue <= x <= int.MaxValue] <br>
-`NextInt()` `NextInt2(out x, out y)` `NextInt3(out x, out y, out z)` `NextInt4(out x, out y, out z, out w)`;
-
-+ `int`<br>[0 <= x < max] <br>
-`NextInt(max)` `NextInt2(max, out x, out y)` `NextInt3(max, out x, out y, out z)` `NextInt4(max, out x, out y, out z, out w)`;
-
-+ `int`<br>[min <= x < max] <br>
-`NextInt(min, max)` `NextInt2(min, max, out x, out y)` `NextInt3(min, max, out x, out y, out z)` `NextInt4(min, max, out x, out y, out z, out w)`;
-
-+ `uint`<br>[uint.MinValue <= x <= uint.MaxValue] <br>
-`NextUInt()` `NextUInt2(out x, out y)` `NextUInt3(out x, out y, out z)` `NextInt4(out x, out y, out z, out w)`;
-
-+ `uint`<br>[0 <= x < max] <br>
-`NextUInt(max)` `NextUInt2(max, out x, out y)` `NextUInt3(max, out x, out y, out z)` `NextUInt4(max, out x, out y, out z, out w)`;
-
-+ `uint`<br>[min <= x < max] <br>
-`NextUInt(min, max)` `NextUInt2(min, max, out x, out y)` `NextUInt3(min, max, out x, out y, out z)` `NextUInt4(min, max, out x, out y, out z, out w)`;
-
-+ `long`<br>[long.MinValue <= x <= long.MaxValue] <br>
-`NextLong()` `NextLong2(out x, out y)` `NextLong3(out x, out y, out z)` `NextLong4(out x, out y, out z, out w)`;
-
-+ `ulong`<br>[ulong.MinValue <= x <= ulong.MaxValue] <br>
-`NextULong()` `NextULong2(out x, out y)` `NextULong3(out x, out y, out z)` `NextULong4(out x, out y, out z, out w)`;
-
-+ `float`<br>[0.0f <= x < 1.0f] <br>
-`NextFloat()` `NextFloat2(out x, out y)` `NextFloat3(out x, out y, out z)` `NextFloat4(out x, out y, out z, out w)`;
-
-+ `double`<br>[0.0d <= x < 1.0d] <br>
-`NextDouble()` `NextDouble2(out x, out y)` `NextDouble3(out x, out y, out z)` `NextDouble4(out x, out y, out z, out w)`;
-
-+ `VectorX`<br>[0.0f <= x < 1.0f] <br>
-`NextVector2()` `NextVector3()` `NextVector4()`;
+```
+[false - true]
+```
+```c#
+bool NextBool();
+void NextBool2(out bool x, out bool y);
+void NextBool3(out bool x, out bool y, out bool z);
+void NextBool4(out bool x, out bool y, out bool z, out bool w);
+Bool2 NextBool2();
+Bool3 NextBool3();
+Bool4 NextBool4();
+```
 
 </details>
 
 <details>
-<summary><b>QuasiRandom.unity.cs</b></summary>
+<summary><b>NextInt</b></summary>
 
-+ `VectorX`<br>[0.0f <= x < 1.0f] <br>
-`NextUnityVector2()` `NextUnityVector3()` `NextUnityVector4()`; 
+```
+[int.MinValue <= x <= int.MaxValue]
+```
+```c#
+int NextInt();
+void NextInt2(out int x, out int y);
+void NextInt3(out int x, out int y, out int z);
+void NextInt4(out int x, out int y, out int z, out int w);
+Int2 NextInt2();
+Int3 NextInt3();
+Int4 NextInt4();
+```
 
-+ `VectorXInt`<br>[0.0f <= x < 1.0f] <br>
-`NextUnityVector2Int()` `NextUnityVector3Int()`;
+```
+[0 <= x < max]
+```
+```c#
+int NextInt(int max);
+void NextInt2(int max, out int x, out int y);
+void NextInt3(int max, out int x, out int y, out int z);
+void NextInt4(int max, out int x, out int y, out int z, out int w);
+Int2 NextInt2(int max);
+Int3 NextInt3(int max);
+Int4 NextInt4(int max);
+```
+
+```
+[min <= x < max]
+```
+```c#
+int NextInt(int min, int max);
+void NextInt2(int min, int max, out int x, out int y);
+void NextInt3(int min, int max, out int x, out int y, out int z);
+void NextInt4(int min, int max, out int x, out int y, out int z, out int w);
+Int2 NextInt2(int min, int max);
+Int3 NextInt3(int min, int max);
+Int4 NextInt4(int min, int max);
+```
 
 </details>
 
 <details>
-<summary><b>QuasiRandom.unity.mathematics.cs</b></summary>
+<summary><b>NextUInt</b></summary>
 
-+ `bool`<br>[false - true] <br>
-`NextBool2()` `NextBool3()` `NextBool4()`;
+```
+[uint.MinValue <= x <= uint.MaxValue]
+```
+```c#
+uint NextUInt();
+void NextUInt2(out uint x, out uint y);
+void NextUInt3(out uint x, out uint y, out uint z);
+void NextUInt4(out uint x, out uint y, out uint z, out uint w);
+UInt2 NextUInt2();
+UInt3 NextUInt3();
+UInt4 NextUInt4();
+```
 
-+ `int`<br>[int.MinValue <= x <= int.MaxValue] <br>
-`NextInt2()` `NextInt3()` `NextInt4()`;
+```
+[0 <= x < max]
+```
+```c#
+uint NextUInt(uint max);
+void NextUInt2(uint max, out uint x, out uint y);
+void NextUInt3(uint max, out uint x, out uint y, out uint z);
+void NextUInt4(uint max, out uint x, out uint y, out uint z, out uint w);
+UInt2 NextUInt2(uint max);
+UInt3 NextUInt3(uint max);
+UInt4 NextUInt4(uint max);
+```
 
-+ `int`<br>[0 <= x < max] <br>
-`NextInt2(max)` `NextInt3(max)` `NextInt4(max)`;
+```
+[min <= x < max]
+```
+```c#
+uint NextUInt(uint min, uint max);
+void NextUInt2(uint min, uint max, out uint x, out uint y);
+void NextUInt3(uint min, uint max, out uint x, out uint y, out uint z);
+void NextUInt4(uint min, uint max, out uint x, out uint y, out uint z, out uint w);
+UInt2 NextUInt2(uint min, uint max);
+UInt3 NextUInt3(uint min, uint max);
+UInt4 NextUInt4(uint min, uint max);
+```
 
-+ `int`<br>[min <= x < max] <br>
-`NextInt2(min, max)` `NextInt3(min, max)` `NextInt4(min, max)`;
+</details>
 
-+ `uint`<br>[uint.MinValue <= x <= uint.MaxValue] <br>
-`NextUInt2()` `NextUInt3()` `NextInt4()`;
+<details>
+<summary><b>NextLong</b></summary>
 
-+ `uint`<br>[0 <= x < max] <br>
-`NextUInt2(max)` `NextUInt3(max)` `NextUInt4(max)`;
+```
+[long.MinValue <= x <= long.MaxValue]
+```
+```c#
+long NextLong();
+void NextLong2(out long x, out long y);
+void NextLong3(out long x, out long y, out long z);
+void NextLong4(out long x, out long y, out long z, out long w);
+Long2 NextLong2();
+Long3 NextLong3();
+Long4 NextLong4();
+```
 
-+ `uint`<br>[min <= x < max] <br>
-`NextUInt2(min, max)` `NextUInt3(min, max)` `NextUInt4(min, max)`;
+```
+[0 <= x < max]
+```
+```c#
+long NextLong(long max);
+void NextLong2(long max, out long x, out long y);
+void NextLong3(long max, out long x, out long y, out long z);
+void NextLong4(long max, out long x, out long y, out long z, out long w);
+Long2 NextLong2(long max);
+Long3 NextLong3(long max);
+Long4 NextLong4(long max);
+```
 
-+ `float`<br>[0.0f <= x < 1.0f] <br>
-`NextFloat2()` `NextFloat3()` `NextFloat4()`;
+```
+[min <= x < max]
+```
+```c#
+long NextLong(long min, long max);
+void NextLong2(long min, long max, out long x, out long y);
+void NextLong3(long min, long max, out long x, out long y, out long z);
+void NextLong4(long min, long max, out long x, out long y, out long z, out long w);
+Long2 NextLong2(long min, long max);
+Long3 NextLong3(long min, long max);
+Long4 NextLong4(long min, long max);
+```
 
-+ `double`<br>[0.0d <= x < 1.0d] <br>
-`NextDouble2()` `NextDouble3()` `NextDouble4()`;
+</details>
+
+<details>
+<summary><b>NextULong</b></summary>
+
+```
+[ulong.MinValue <= x <= ulong.MaxValue]
+```
+```c#
+ulong NextULong();
+void NextULong2(out ulong x, out ulong y);
+void NextULong3(out ulong x, out ulong y, out ulong z);
+void NextULong4(out ulong x, out ulong y, out ulong z, out ulong w);
+ULong2 NextULong2();
+ULong3 NextULong3();
+ULong4 NextULong4();
+```
+
+```
+[0 <= x < max]
+```
+```c#
+ulong NextULong(ulong max);
+void NextULong2(ulong max, out ulong x, out ulong y);
+void NextULong3(ulong max, out ulong x, out ulong y, out ulong z);
+void NextULong4(ulong max, out ulong x, out ulong y, out ulong z, out ulong w);
+ULong2 NextULong2(ulong max);
+ULong3 NextULong3(ulong max);
+ULong4 NextULong4(ulong max);
+```
+
+```
+[min <= x < max]
+```
+```c#
+ulong NextULong(ulong min, ulong max);
+void NextULong2(ulong min, ulong max, out ulong x, out ulong y);
+void NextULong3(ulong min, ulong max, out ulong x, out ulong y, out ulong z);
+void NextULong4(ulong min, ulong max, out ulong x, out ulong y, out ulong z, out ulong w);
+ULong2 NextULong2(ulong min, ulong max);
+ULong3 NextULong3(ulong min, ulong max);
+ULong4 NextULong4(ulong min, ulong max);
+```
+
+</details>
+
+<details>
+<summary><b>NextFloat</b></summary>
+
+```
+[0.0f <= x < 1.0f]
+```
+```c#
+float NextFloat();
+void NextFloat2(out float x, out float y);
+void NextFloat3(out float x, out float y, out float z);
+void NextFloat4(out float x, out float y, out float z, out float w);
+Float2 NextFloat2();
+Float3 NextFloat3();
+Float4 NextFloat4();
+```
+
+</details>
+
+<details>
+<summary><b>NextDouble</b></summary>
+
+```
+[0.0d <= x < 1.0d]
+```
+```c#
+double NextDouble();
+void NextDouble2(out double x, out double y);
+void NextDouble3(out double x, out double y, out double z);
+void NextDouble4(out double x, out double y, out double z, out double w);
+Double2 NextDouble2();
+Double3 NextDouble3();
+Double4 NextDouble4();
+```
 
 </details>
 
