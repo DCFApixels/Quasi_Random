@@ -54,7 +54,7 @@
 
 ## Introduction
 Quasi-random sequences are well suited when the problem is to uniformly fill a space by simulating random filling. The implementation is based on a new additive recursive R-sequence and an article from [Habr](https://habr.com/ru/articles/440892/).
-R-sequence is easy to compute, and when computed in integers it gives good performance. 
+R-sequence is easy to compute, and when computed in integers gives determinism and good performance. 
 
 I used this sequence to generate starting positions, stores and other activity points in the  [БольКрафт](https://www.youtube.com/watch?v=txSoCd98OcI&list=PLZT7fvvYlYfhqWJBWzJoLQxconfz1lHPq&index=17) map generator for Warcraft 3. This way the activity points were placed roughly evenly across the map while making their positions look random.
 

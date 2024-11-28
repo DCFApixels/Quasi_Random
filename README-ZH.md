@@ -52,7 +52,7 @@
 </br>
 
 ## 介绍
-Quasi随机序列在需要模拟随机填充并均匀填充空间的情况下非常适用。该实现基于新的加法递归R序列和[habr文章](https://habr.com/ru/articles/440892/)。R序列易于计算，并且在整数计算时具有良好的性能。
+Quasi随机序列在需要模拟随机填充并均匀填充空间的情况下非常适用。该实现基于新的加法递归R序列和[habr文章](https://habr.com/ru/articles/440892/)。R序列易于计算，并且在整数计算时具有确定性和良好的性能。
 
 我使用该序列来生成[Warcraft 3地图](https://www.youtube.com/watch?v=txSoCd98OcI&list=PLZT7fvvYlYfhqWJBWzJoLQxconfz1lHPq&index=17)的起始位置、商店和其他活动点的生成器。因此，活动点大致均匀分布在整个地图上，同时它们的位置看起来是随机的。
 
