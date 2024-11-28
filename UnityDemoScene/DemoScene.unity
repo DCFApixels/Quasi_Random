@@ -449,8 +449,10 @@ MonoBehaviour:
   size: 5.5
   seed: 7
   autoSeed: 1
+  method: 0
   min: 0
-  max: 9223372036854775807
+  max: 1000
+  range: 1000
 --- !u!1 &1715736614
 GameObject:
   m_ObjectHideFlags: 0

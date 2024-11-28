@@ -1,5 +1,6 @@
 using DCFApixels;
 using System;
+using System.Security.Cryptography;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -82,16 +83,64 @@ public class QuasiRandomDemo : RandomDemoBase
             _random = new QuasiRandom(seed);
         }
     }
+    public enum Method
+    {
+        NextInt,
+        NextUInt,
+        NextLong,
+        NextULong,
+        NextFloat,
+        NextDouble,
+    }
+    public Method method;
+    public long min = 0;
+    public long max = 1000;
+    public double range = 1000;
     protected override void Apply()
     {
         _random.SetState(seed);
         var points = GetPoints(count);
-        float2 halfSize = new float2(1, 1) * size / 2f;
+        double2 halfSize = new double2(1, 1) * size / 2f;
         for (int i = 0; i < count; i++)
         {
             var point = points[i];
-            float2 r = (float2)_random.NextLong2() * size - halfSize;
-            point.transform.localPosition = new Vector3(r.x, r.y, 0);
+            double2 r;
+            switch (method)
+            {
+                case Method.NextInt:
+                    r = (double2)_random.NextInt2((int)min, (int)max);
+                    r /= range;
+                    r = r * size - halfSize;
+                    break;
+                case Method.NextUInt:
+                    r = (double2)_random.NextUInt2((uint)min, (uint)max);
+                    r /= range;
+                    r = r * size - halfSize;
+                    break;
+                case Method.NextLong:
+                    r = (double2)_random.NextLong2((long)min, (long)max);
+                    r /= range;
+                    r = r * size - halfSize;
+                    break;
+                case Method.NextULong:
+                    r = (double2)_random.NextULong2((ulong)min, (ulong)max);
+                    r /= range;
+                    r = r * size - halfSize;
+                    break;
+                case Method.NextFloat:
+                    r = (double2)_random.NextFloat2() * size - halfSize;
+                    break;
+                case Method.NextDouble:
+                    r = (double2)_random.NextDouble2() * size - halfSize;
+                    break;
+                default:
+                    r = default;
+                    break;
+            }
+            if(math.any(math.isnan(r)) == false)
+            {
+                point.transform.localPosition = new Vector3((float)r.x, (float)r.y, 0);
+            }
             point.color = gradient.Evaluate((float)i / count);
             point.sortingOrder = i;
         }

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using q32 = System.UInt32;
 using q64 = System.UInt64;
 
@@ -10,6 +11,7 @@ namespace DCFApixels
     using IN = MethodImplAttribute;
     /// <summary>Quasi Random. Use new additive recursive R-sequence.</summary>
     [Serializable]
+    [DataContract]
     public partial struct QuasiRandom : IEquatable<QuasiRandom>, IFormattable
     {
         private const MethodImplOptions LINE = MethodImplOptions.AggressiveInlining;
@@ -133,6 +135,7 @@ namespace DCFApixels
         [IN(LINE)] private static long Compresse64(ulong value, long min, ulong range) => Compresse64(value, range) + min;
 
         [IN(LINE)] private static ulong CompresseU64(ulong value, ulong min, ulong range) => CompresseU64(value, range) + min;
+
         [IN(LINE)]
         private unsafe static ulong CompresseU64(ulong value, ulong range)
         {
@@ -180,6 +183,7 @@ namespace DCFApixels
 #if UNITY_5_3_OR_NEWER
         [UnityEngine.SerializeField]
 #endif
+        [DataMember]
         private uint _state;
 
         #region Constructors
@@ -256,15 +260,15 @@ namespace DCFApixels
         #endregion
 
         #region Int
-        [IN(LINE)] public int NextInt() => (int)GetX1_Q32(++_state);
+        [IN(LINE)] public int NextInt() => (int)(GetX1_Q32(++_state) >> 1);
         [IN(LINE)] public int NextInt(int max) => Compresse32(GetX1_Q32(++_state), max);
         [IN(LINE)] public int NextInt(int min, int max) => Compresse32(GetX1_Q32(++_state), min, (ulong)(max - min));
 
         [IN(LINE)]
         public void NextInt2(out int x, out int y)
         {
-            x = (int)GetX2_Q32(++_state);
-            y = (int)GetY2_Q32(_state);
+            x = (int)(GetX2_Q32(++_state) >> 1);
+            y = (int)(GetY2_Q32(_state) >> 1);
         }
         [IN(LINE)]
         public void NextInt2(int max, out int x, out int y)
@@ -283,9 +287,9 @@ namespace DCFApixels
         [IN(LINE)]
         public void NextInt3(out int x, out int y, out int z)
         {
-            x = (int)GetX3_Q32(++_state);
-            y = (int)GetY3_Q32(_state);
-            z = (int)GetZ3_Q32(_state);
+            x = (int)(GetX3_Q32(++_state) >> 1);
+            y = (int)(GetY3_Q32(_state) >> 1);
+            z = (int)(GetZ3_Q32(_state) >> 1);
         }
         [IN(LINE)]
         public void NextInt3(int max, out int x, out int y, out int z)
@@ -306,10 +310,10 @@ namespace DCFApixels
         [IN(LINE)]
         public void NextInt4(out int x, out int y, out int z, out int w)
         {
-            x = (int)GetX4_Q32(++_state);
-            y = (int)GetY4_Q32(_state);
-            z = (int)GetZ4_Q32(_state);
-            w = (int)GetW4_Q32(_state);
+            x = (int)(GetX4_Q32(++_state) >> 1);
+            y = (int)(GetY4_Q32(_state) >> 1);
+            z = (int)(GetZ4_Q32(_state) >> 1);
+            w = (int)(GetW4_Q32(_state) >> 1);
         }
         [IN(LINE)]
         public void NextInt4(int max, out int x, out int y, out int z, out int w)
@@ -333,8 +337,8 @@ namespace DCFApixels
         public Int2 NextInt2()
         {
             return new Int2(
-                (int)GetX2_Q32(++_state),
-                (int)GetY2_Q32(_state));
+                (int)(GetX2_Q32(++_state) >> 1),
+                (int)(GetY2_Q32(_state)) >> 1);
         }
         [IN(LINE)]
         public Int2 NextInt2(int max)
@@ -348,17 +352,17 @@ namespace DCFApixels
         {
             ulong range = (ulong)(max - min);
             return new Int2(
-                Compresse32(GetX2_Q32(++_state), max, range),
-                Compresse32(GetY2_Q32(_state), max, range));
+                Compresse32(GetX2_Q32(++_state), min, range),
+                Compresse32(GetY2_Q32(_state), min, range));
         }
 
         [IN(LINE)]
         public Int3 NextInt3()
         {
             return new Int3(
-                (int)GetX3_Q32(++_state),
-                (int)GetY3_Q32(_state),
-                (int)GetZ3_Q32(_state));
+                (int)(GetX3_Q32(++_state) >> 1),
+                (int)(GetY3_Q32(_state) >> 1),
+                (int)(GetZ3_Q32(_state) >> 1));
         }
         [IN(LINE)]
         public Int3 NextInt3(int max)
@@ -373,19 +377,19 @@ namespace DCFApixels
         {
             ulong range = (ulong)(max - min);
             return new Int3(
-                Compresse32(GetX3_Q32(++_state), max, range),
-                Compresse32(GetY3_Q32(_state), max, range),
-                Compresse32(GetZ3_Q32(_state), max, range));
+                Compresse32(GetX3_Q32(++_state), min, range),
+                Compresse32(GetY3_Q32(_state), min, range),
+                Compresse32(GetZ3_Q32(_state), min, range));
         }
 
         [IN(LINE)]
         public Int4 NextInt4()
         {
             return new Int4(
-                (int)GetX4_Q32(++_state),
-                (int)GetY4_Q32(_state),
-                (int)GetZ4_Q32(_state),
-                (int)GetW4_Q32(_state));
+                (int)(GetX4_Q32(++_state) >> 1),
+                (int)(GetY4_Q32(_state) >> 1),
+                (int)(GetZ4_Q32(_state) >> 1),
+                (int)(GetW4_Q32(_state) >> 1));
         }
         [IN(LINE)]
         public Int4 NextInt4(int max)
@@ -401,17 +405,17 @@ namespace DCFApixels
         {
             ulong range = (ulong)(max - min);
             return new Int4(
-                Compresse32(GetX4_Q32(++_state), max, range),
-                Compresse32(GetY4_Q32(_state), max, range),
-                Compresse32(GetZ4_Q32(_state), max, range),
-                Compresse32(GetW4_Q32(_state), max, range));
+                Compresse32(GetX4_Q32(++_state), min, range),
+                Compresse32(GetY4_Q32(_state), min, range),
+                Compresse32(GetZ4_Q32(_state), min, range),
+                Compresse32(GetW4_Q32(_state), min, range));
         }
         #endregion
 
         #region UInt
         [IN(LINE)] public uint NextUInt() => GetX1_Q32(++_state);
         [IN(LINE)] public uint NextUInt(uint max) => CompresseU32(GetX1_Q32(++_state), max);
-        [IN(LINE)] public uint NextUInt(uint min, uint max) => CompresseU32(GetX1_Q32(++_state), min, (ulong)(max - min));
+        [IN(LINE)] public uint NextUInt(uint min, uint max) => CompresseU32(GetX1_Q32(++_state), min, max - min);
 
         [IN(LINE)]
         public void NextUInt2(out uint x, out uint y)
@@ -428,7 +432,7 @@ namespace DCFApixels
         [IN(LINE)]
         public void NextUInt2(uint min, uint max, out uint x, out uint y)
         {
-            ulong range = (ulong)(max - min);
+            ulong range = max - min;
             x = CompresseU32(GetX2_Q32(++_state), min, range);
             y = CompresseU32(GetY2_Q32(_state), min, range);
         }
@@ -450,7 +454,7 @@ namespace DCFApixels
         [IN(LINE)]
         public void NextUInt3(uint min, uint max, out uint x, out uint y, out uint z)
         {
-            ulong range = (ulong)(max - min);
+            ulong range = max - min;
             x = CompresseU32(GetX3_Q32(++_state), min, range);
             y = CompresseU32(GetY3_Q32(_state), min, range);
             z = CompresseU32(GetZ3_Q32(_state), min, range);
@@ -499,10 +503,10 @@ namespace DCFApixels
         [IN(LINE)]
         public UInt2 NextUInt2(uint min, uint max)
         {
-            ulong range = (ulong)(max - min);
+            ulong range = max - min;
             return new UInt2(
-                CompresseU32(GetX2_Q32(++_state), max, range),
-                CompresseU32(GetY2_Q32(_state), max, range));
+                CompresseU32(GetX2_Q32(++_state), min, range),
+                CompresseU32(GetY2_Q32(_state), min, range));
         }
 
         [IN(LINE)]
@@ -524,11 +528,11 @@ namespace DCFApixels
         [IN(LINE)]
         public UInt3 NextUInt3(uint min, uint max)
         {
-            ulong range = (ulong)(max - min);
+            ulong range = max - min;
             return new UInt3(
-                CompresseU32(GetX3_Q32(++_state), max, range),
-                CompresseU32(GetY3_Q32(_state), max, range),
-                CompresseU32(GetZ3_Q32(_state), max, range));
+                CompresseU32(GetX3_Q32(++_state), min, range),
+                CompresseU32(GetY3_Q32(_state), min, range),
+                CompresseU32(GetZ3_Q32(_state), min, range));
         }
 
         [IN(LINE)]
@@ -552,46 +556,95 @@ namespace DCFApixels
         [IN(LINE)]
         public UInt4 NextUInt4(uint min, uint max)
         {
-            ulong range = (ulong)(max - min);
+            ulong range = max - min;
             return new UInt4(
-                CompresseU32(GetX4_Q32(++_state), max, range),
-                CompresseU32(GetY4_Q32(_state), max, range),
-                CompresseU32(GetZ4_Q32(_state), max, range),
-                CompresseU32(GetW4_Q32(_state), max, range));
+                CompresseU32(GetX4_Q32(++_state), min, range),
+                CompresseU32(GetY4_Q32(_state), min, range),
+                CompresseU32(GetZ4_Q32(_state), min, range),
+                CompresseU32(GetW4_Q32(_state), min, range));
         }
         #endregion
 
         #region Long
-        [IN(LINE)] public long NextLong() => (long)GetX1_Q64(++_state);
+        [IN(LINE)] public long NextLong() => (long)(GetX1_Q64(++_state) >> 1);
+        [IN(LINE)] public long NextLong(long max) => Compresse64(GetX1_Q64(++_state), max);
+        [IN(LINE)] public long NextLong(long min, long max) => Compresse64(GetX1_Q64(++_state), min, (ulong)(max - min));
 
         [IN(LINE)]
         public void NextLong2(out long x, out long y)
         {
-            x = (long)GetX2_Q64(++_state);
-            y = (long)GetY2_Q64(_state);
+            x = (long)(GetX2_Q64(++_state) >> 1);
+            y = (long)(GetY2_Q64(_state) >> 1);
         }
+        //[IN(LINE)]
+        public void NextLong2(long max, out long x, out long y)
+        {
+            x = Compresse64(GetX2_Q64(++_state), max);
+            y = Compresse64(GetY2_Q64(_state), max);
+        }
+        //[IN(LINE)]
+        public void NextLong2(long min, long max, out long x, out long y)
+        {
+            ulong range = (ulong)(max - min);
+            x = Compresse64(GetX2_Q64(++_state), min, range);
+            y = Compresse64(GetY2_Q64(_state), min, range);
+        }
+
         [IN(LINE)]
         public void NextLong3(out long x, out long y, out long z)
         {
-            x = (long)GetX3_Q64(++_state);
-            y = (long)GetY3_Q64(_state);
-            z = (long)GetZ3_Q64(_state);
+            x = (long)(GetX3_Q64(++_state) >> 1);
+            y = (long)(GetY3_Q64(_state) >> 1);
+            z = (long)(GetZ3_Q64(_state) >> 1);
         }
+        //[IN(LINE)]
+        public void NextLong3(long max, out long x, out long y, out long z)
+        {
+            x = Compresse64(GetX3_Q64(++_state), max);
+            y = Compresse64(GetY3_Q64(_state), max);
+            z = Compresse64(GetZ3_Q64(_state), max);
+        }
+        //[IN(LINE)]
+        public void NextLong3(long min, long max, out long x, out long y, out long z)
+        {
+            ulong range = (ulong)(max - min);
+            x = Compresse64(GetX3_Q64(++_state), min, range);
+            y = Compresse64(GetY3_Q64(_state), min, range);
+            z = Compresse64(GetZ3_Q64(_state), min, range);
+        }
+
         [IN(LINE)]
         public void NextLong4(out long x, out long y, out long z, out long w)
         {
-            x = (long)GetX4_Q64(++_state);
-            y = (long)GetY4_Q64(_state);
-            z = (long)GetZ4_Q64(_state);
-            w = (long)GetW4_Q64(_state);
+            x = (long)(GetX4_Q64(++_state) >> 1);
+            y = (long)(GetY4_Q64(_state) >> 1);
+            z = (long)(GetZ4_Q64(_state) >> 1);
+            w = (long)(GetW4_Q64(_state) >> 1);
+        }
+        //[IN(LINE)]
+        public void NextLong4(long max, out long x, out long y, out long z, out long w)
+        {
+            x = Compresse64(GetX4_Q64(++_state), max);
+            y = Compresse64(GetY4_Q64(_state), max);
+            z = Compresse64(GetZ4_Q64(_state), max);
+            w = Compresse64(GetW4_Q64(_state), max);
+        }
+        //[IN(LINE)]
+        public void NextLong4(long min, long max, out long x, out long y, out long z, out long w)
+        {
+            ulong range = (ulong)(max - min);
+            x = Compresse64(GetX4_Q64(++_state), min, range);
+            y = Compresse64(GetY4_Q64(_state), min, range);
+            z = Compresse64(GetZ4_Q64(_state), min, range);
+            w = Compresse64(GetW4_Q64(_state), min, range);
         }
 
         [IN(LINE)]
         public Long2 NextLong2()
         {
             return new Long2(
-                (long)GetX2_Q64(++_state),
-                (long)GetY2_Q64(_state));
+                (long)(GetX2_Q64(++_state) >> 1),
+                (long)(GetY2_Q64(_state) >> 1));
         }
         //[IN(LINE)]
         public Long2 NextLong2(long max)
@@ -613,9 +666,9 @@ namespace DCFApixels
         public Long3 NextLong3()
         {
             return new Long3(
-                (long)GetX3_Q64(++_state),
-                (long)GetY3_Q64(_state),
-                (long)GetZ3_Q64(_state));
+                (long)(GetX3_Q64(++_state) >> 1),
+                (long)(GetY3_Q64(_state) >> 1),
+                (long)(GetZ3_Q64(_state) >> 1));
         }
         //[IN(LINE)]
         public Long3 NextLong3(long max)
@@ -639,10 +692,10 @@ namespace DCFApixels
         public Long4 NextLong4()
         {
             return new Long4(
-                (long)GetX4_Q64(++_state),
-                (long)GetY4_Q64(_state),
-                (long)GetZ4_Q64(_state),
-                (long)GetW4_Q64(_state));
+                (long)(GetX4_Q64(++_state) >> 1),
+                (long)(GetY4_Q64(_state) >> 1),
+                (long)(GetZ4_Q64(_state) >> 1),
+                (long)(GetW4_Q64(_state) >> 1));
         }
         //[IN(LINE)]
         public Long4 NextLong4(long max)
@@ -667,6 +720,8 @@ namespace DCFApixels
 
         #region ULong
         [IN(LINE)] public ulong NextULong() => GetX1_Q64(++_state);
+        [IN(LINE)] public ulong NextULong(ulong max) => CompresseU64(GetX1_Q64(++_state), max);
+        [IN(LINE)] public ulong NextULong(ulong min, ulong max) => CompresseU64(GetX1_Q64(++_state), min, max - min);
 
         [IN(LINE)]
         public void NextULong2(out ulong x, out ulong y)
@@ -674,6 +729,20 @@ namespace DCFApixels
             x = GetX2_Q64(++_state);
             y = GetY2_Q64(_state);
         }
+        //[IN(LINE)]
+        public void NextLong2(ulong max, out ulong x, out ulong y)
+        {
+            x = CompresseU64(GetX2_Q64(++_state), max);
+            y = CompresseU64(GetY2_Q64(_state), max);
+        }
+        //[IN(LINE)]
+        public void NextLong2(ulong min, ulong max, out ulong x, out ulong y)
+        {
+            ulong range = max - min;
+            x = CompresseU64(GetX2_Q64(++_state), min, range);
+            y = CompresseU64(GetY2_Q64(_state), min, range);
+        }
+
         [IN(LINE)]
         public void NextULong3(out ulong x, out ulong y, out ulong z)
         {
@@ -681,6 +750,22 @@ namespace DCFApixels
             y = GetY3_Q64(_state);
             z = GetZ3_Q64(_state);
         }
+        //[IN(LINE)]
+        public void NextLong3(ulong max, out ulong x, out ulong y, out ulong z)
+        {
+            x = CompresseU64(GetX3_Q64(++_state), max);
+            y = CompresseU64(GetY3_Q64(_state), max);
+            z = CompresseU64(GetZ3_Q64(_state), max);
+        }
+        //[IN(LINE)]
+        public void NextLong3(ulong min, ulong max, out ulong x, out ulong y, out ulong z)
+        {
+            ulong range = max - min;
+            x = CompresseU64(GetX3_Q64(++_state), min, range);
+            y = CompresseU64(GetY3_Q64(_state), min, range);
+            z = CompresseU64(GetZ3_Q64(_state), min, range);
+        }
+
         [IN(LINE)]
         public void NextULong4(out ulong x, out ulong y, out ulong z, out ulong w)
         {
@@ -688,6 +773,23 @@ namespace DCFApixels
             y = GetY4_Q64(_state);
             z = GetZ4_Q64(_state);
             w = GetW4_Q64(_state);
+        }
+        //[IN(LINE)]
+        public void NextULong4(ulong max, out ulong x, out ulong y, out ulong z, out ulong w)
+        {
+            x = CompresseU64(GetX4_Q64(++_state), max);
+            y = CompresseU64(GetY4_Q64(_state), max);
+            z = CompresseU64(GetZ4_Q64(_state), max);
+            w = CompresseU64(GetW4_Q64(_state), max);
+        }
+        //[IN(LINE)]
+        public void NextULong4(ulong min, ulong max, out ulong x, out ulong y, out ulong z, out ulong w)
+        {
+            ulong range = max - min;
+            x = CompresseU64(GetX4_Q64(++_state), min, range);
+            y = CompresseU64(GetY4_Q64(_state), min, range);
+            z = CompresseU64(GetZ4_Q64(_state), min, range);
+            w = CompresseU64(GetW4_Q64(_state), min, range);
         }
 
         [IN(LINE)]
