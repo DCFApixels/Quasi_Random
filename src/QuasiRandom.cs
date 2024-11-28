@@ -338,7 +338,7 @@ namespace DCFApixels
         {
             return new Int2(
                 (int)(GetX2_Q32(++_state) >> 1),
-                (int)(GetY2_Q32(_state)) >> 1);
+                (int)(GetY2_Q32(_state) >> 1));
         }
         [IN(LINE)]
         public Int2 NextInt2(int max)
